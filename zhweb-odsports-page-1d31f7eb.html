@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>了解 od体育 · 简明指南</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+      background: linear-gradient(145deg, #fce9d8 0%, #f6d5b3 70%, #efc19a 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1.2rem;
+      line-height: 1.6;
+      color: #2e241e;
+    }
+
+    .page-wrapper {
+      max-width: 1000px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    /* 知识库入口式目录感布局 */
+    .hero {
+      background: rgba(255, 248, 240, 0.85);
+      backdrop-filter: blur(2px);
+      border-radius: 24px;
+      padding: 2.2rem 2.5rem;
+      margin-bottom: 2.5rem;
+      box-shadow: 0 12px 28px rgba(140, 80, 40, 0.12), 0 4px 12px rgba(90, 50, 20, 0.06);
+      border: 1px solid rgba(255, 235, 215, 0.8);
+      transition: box-shadow 0.2s;
+    }
+
+    .hero h1 {
+      font-size: 2.4rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: #4d3325;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .hero h1 span {
+      background: #cba78b;
+      color: #fef6ed;
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 0.2rem 0.8rem;
+      border-radius: 30px;
+      letter-spacing: 0.3px;
+      margin-left: 0.2rem;
+      vertical-align: middle;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: #5a4032;
+      max-width: 80%;
+      margin: 0.4rem 0 0.2rem;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem 1rem;
+      margin-top: 1.2rem;
+      font-size: 0.9rem;
+      color: #7a5f4c;
+    }
+
+    .badge-row span {
+      background: #ebd6c4;
+      padding: 0.2rem 0.9rem;
+      border-radius: 40px;
+      font-weight: 450;
+    }
+
+    /* 卡片网格 — 目录感 */
+    .card-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.8rem;
+      margin-bottom: 2.2rem;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 1.8rem 1.8rem 2rem;
+      box-shadow: 0 8px 20px rgba(130, 70, 30, 0.08);
+      border: 1px solid rgba(235, 215, 195, 0.5);
+      transition: transform 0.15s ease, box-shadow 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 32px rgba(120, 65, 25, 0.10);
+    }
+
+    .card h2 {
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: #4d3325;
+      border-left: 4px solid #ceaa8e;
+      padding-left: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .card p, .card li {
+      font-size: 0.97rem;
+      color: #3f2e24;
+    }
+
+    .card ul {
+      padding-left: 1.2rem;
+      margin-top: 0.3rem;
+      list-style: none;
+    }
+
+    .card ul li {
+      position: relative;
+      padding-left: 1rem;
+      margin-bottom: 0.45rem;
+    }
+
+    .card ul li::before {
+      content: "·";
+      position: absolute;
+      left: 0;
+      color: #b5896b;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .tip-card {
+      background: #fff9f2;
+      border: 1px solid #e9d2be;
+    }
+
+    .highlight-link {
+      display: inline-block;
+      background: #e6cfbb;
+      color: #3d2b20;
+      padding: 0.3rem 1.2rem;
+      border-radius: 40px;
+      font-weight: 500;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: background 0.2s, color 0.2s;
+      margin-top: 0.5rem;
+      border: 1px solid transparent;
+      cursor: default;
+      pointer-events: auto;
+    }
+
+    .highlight-link:hover {
+      background: #d4b69c;
+      color: #1f1610;
+      border-color: #b48c6e;
+    }
+
+    .info-panel {
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 1.8rem 2rem;
+      margin-bottom: 2.2rem;
+      box-shadow: 0 6px 16px rgba(110, 60, 20, 0.06);
+      border-left: 6px solid #bf9a7d;
+    }
+
+    .info-panel h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #4d3325;
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .info-panel p {
+      margin-bottom: 0.5rem;
+    }
+
+    .info-panel .meta-note {
+      margin-top: 0.8rem;
+      padding-top: 0.8rem;
+      border-top: 1px dashed #dcc8b8;
+      font-size: 0.9rem;
+      color: #6f5543;
+    }
+
+    .faq-mini {
+      background: #fffcf7;
+      border-radius: 20px;
+      padding: 1.6rem 1.8rem;
+      margin-bottom: 2rem;
+      border: 1px solid #ebd5c2;
+    }
+
+    .faq-mini h3 {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #4d3325;
+      margin-bottom: 1rem;
+    }
+
+    .faq-item {
+      margin-bottom: 0.9rem;
+    }
+
+    .faq-item strong {
+      display: inline-block;
+      color: #694d39;
+      font-weight: 600;
+      margin-bottom: 0.1rem;
+    }
+
+    .faq-item p {
+      margin-left: 0.2rem;
+      color: #3d2d22;
+    }
+
+    .footer-note {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #6b5544;
+      padding: 1.2rem 0 0.2rem;
+      border-top: 1px solid #dac2ae;
+      margin-top: 0.8rem;
+    }
+
+    .footer-note a {
+      color: #5a3f2e;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-color: #c6a88e;
+    }
+
+    /* 响应式 */
+    @media (max-width: 700px) {
+      body {
+        padding: 1.2rem 0.8rem;
+      }
+      .hero {
+        padding: 1.6rem 1.2rem;
+      }
+      .hero h1 {
+        font-size: 1.8rem;
+        flex-wrap: wrap;
+      }
+      .hero p {
+        max-width: 100%;
+      }
+      .card-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+      }
+      .card {
+        padding: 1.4rem;
+      }
+      .info-panel {
+        padding: 1.2rem 1.2rem;
+      }
+      .faq-mini {
+        padding: 1.2rem;
+      }
+    }
+
+    @media (max-width: 450px) {
+      .hero h1 {
+        font-size: 1.6rem;
+      }
+      .badge-row span {
+        font-size: 0.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page-wrapper">
+  <!-- hero 区域 / 简明指南入口 -->
+  <div class="hero">
+    <h1>
+      📘 了解 od体育
+      <span>简明指南</span>
+    </h1>
+    <p>从这里开始，快速熟悉平台特点、访问方式与常见提醒。适合新朋友与希望回顾细节的用户。</p>
+    <div class="badge-row">
+      <span>📌 访问提醒</span>
+      <span>🧭 功能速览</span>
+      <span>🛡️ 安全须知</span>
+      <span>📋 常见问答</span>
+    </div>
+  </div>
+
+  <!-- 双卡片布局: 说明区 + 特点/场景 -->
+  <div class="card-grid">
+    <!-- 卡片1: 说明区 / 平台定位 -->
+    <div class="card">
+      <h2>📌 说明区</h2>
+      <p><strong>od体育</strong> 是一个面向运动与赛事爱好者的综合信息平台，提供赛事数据、赛程浏览以及相关资讯服务。界面设计清晰，分类细致，适合日常快速查阅。</p>
+      <p style="margin-top: 0.8rem;">你可以将它看作一个体育知识库入口，聚合了多种运动项目的基础信息，帮助用户在赛前赛后获得参考内容。平台持续更新，保持与主流赛事同步。</p>
+      <div style="margin-top: 0.8rem; background: #f5ede6; border-radius: 40px; padding: 0.3rem 0.8rem; display: inline-block; font-size: 0.85rem; color: #5a4030;">
+        ⚡ 推荐场景：快速浏览赛程、了解队伍动态
+      </div>
+    </div>
+
+    <!-- 卡片2: 特点与使用场景 -->
+    <div class="card tip-card">
+      <h2>🧩 特点 & 场景</h2>
+      <ul>
+        <li><strong>分类导览</strong> – 按运动项目与赛事组织，方便定位感兴趣的内容。</li>
+        <li><strong>数据简明</strong> – 重点展示比分、时间、队伍等核心信息，减少冗余。</li>
+        <li><strong>多端适配</strong> – 在手机与电脑上均有良好的阅读体验。</li>
+        <li><strong>日常使用</strong> – 适合赛前预习、赛后回顾以及横向对比。</li>
+      </ul>
+      <p style="margin-top: 0.7rem; font-style: italic; color: #674e3a;">“从入门到熟悉，一个页面就能建立基本印象。”</p>
+    </div>
+  </div>
+
+  <!-- 提示区 / 访问提醒 + 相关信息 -->
+  <div class="info-panel">
+    <h3>🔔 提示区 · 访问与使用提醒</h3>
+    <p>◈ 如果你希望直接浏览平台内容，可以前往 <a href="https://zhweb--odsports.com" class="highlight-link" style="display: inline; background: transparent; padding: 0; border-radius: 0; text-decoration: underline; text-underline-offset: 3px; color: #694e39; font-weight: 500;">od体育</a> 查看最新信息。建议使用主流浏览器（Chrome、Edge、Safari）以获得完整布局。</p>
+    <p>◈ 部分页面可能需要稳定的网络连接；遇到加载缓慢时，可尝试刷新或稍后重试。平台未强制要求注册即可浏览大部分内容，但部分个性化功能可能需要登录。</p>
+    <p>◈ 注意核对赛事时间与对应时区，页面显示通常以平台标注为准。如发现数据异常，可通过页面反馈渠道告知。</p>
+    <div class="meta-note">
+      📎 相关信息：od体育 不提供博彩或投注服务，仅作为体育信息展示与参考工具。请合理使用，享受体育本身的乐趣。
+    </div>
+  </div>
+
+  <!-- FAQ 摘要区 / 温和问答 -->
+  <div class="faq-mini">
+    <h3>❓ FAQ 摘要 — 快速了解</h3>
+    <div class="faq-item">
+      <strong>Q：od体育 覆盖哪些运动？</strong>
+      <p>涵盖足球、篮球、网球、排球以及部分小众项目，赛事覆盖主流联赛与杯赛。</p>
+    </div>
+    <div class="faq-item">
+      <strong>Q：页面上的数据更新频率如何？</strong>
+      <p>重要赛事基本实时更新，部分统计赛后补全。建议以官方最终数据为准。</p>
+    </div>
+    <div class="faq-item">
+      <strong>Q：需要下载额外软件吗？</strong>
+      <p>不需要。通过浏览器直接访问 <a href="https://zhweb--odsports.com" style="color: #694e39; text-decoration: underline; text-underline-offset: 2px;">od体育</a> 即可，无需安装任何插件或应用。</p>
+    </div>
+  </div>
+
+  <!-- 底部 / 简洁版权与重申 -->
+  <div class="footer-note">
+    <p>本页面为独立介绍页，内容仅供参考。平台运营与内容由 <a href="https://zhweb--odsports.com" style="text-decoration: underline; text-underline-offset: 3px;">od体育</a> 所有。使用前请阅读相关条款。</p>
+    <p style="margin-top: 0.3rem; opacity: 0.7;">—— 专注于体育信息 · 保持简明与真实 ——</p>
+  </div>
+</div>
+</body>
+</html>
